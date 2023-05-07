@@ -14,8 +14,8 @@ It shows a list of questions. The users can add new questions to the list and vo
 * Asp.net core 7
 * MediatR 12.0.1
 * XUnit 2.4.2
-* FluentAssertions 6.10.0
-* Swashbuckle 6.4.0
+* FluentAssertions 6.11.0
+* Swashbuckle 6.5.0
 * Entity framework core 7
 * Asp.net SignalR core 7
 

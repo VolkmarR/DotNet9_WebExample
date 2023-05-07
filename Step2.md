@@ -1,10 +1,21 @@
 # Step 2 - Web Api implementation
 
-## Add Nuget packages for database access
+## Add Nuget packages for database access 
+
+### QuestionsApp.Web
 
 * Add the following NuGet package to the QuestionsApp.Web project
+  * Microsoft.EntityFrameworkCore.Sqlite
+  * Microsoft.EntityFrameworkCore.Sqlite.Core
+* Save All
+
+
+### QuestionsApp.Test
+
+* Add the following NuGet package to the QuestionsApp.Test project
   * Microsoft.EntityFrameworkCore.InMemory
 * Save All
+
 
 ## Implement the database model
 
@@ -61,15 +72,26 @@ public DbSet<VoteDB> Votes { get; set; }
 ~~~
 </details>
 
-### Configure EntityFramework in program.cs to use InMemoryDatabase
+### Configure EntityFramework in program.cs to use SQLite
 
-<details><summary>ConfigureServices</summary>
+<details><summary>Add the context to the Sevices</summary>
 
 ~~~c#
 // Configuration for Entity Framework
-builder.services.AddDbContext<QuestionsContext>(options => options.UseInMemoryDatabase("Dummy"));
+var connectionString = new SqliteConnectionStringBuilder() { DataSource = "Production.db" }.ToString();
+builder.Services.AddDbContext<QuestionsContext>(x => x.UseSqlite(connectionString));
 ~~~
 </details>
+
+<details><summary>Ensure, that the database exists (after builder.Build())</summary>
+
+~~~c#
+// Make sure, that the database exists
+using (var scope = app.Services.CreateScope())
+    scope.ServiceProvider.GetRequiredService<QuestionsContext>().Database.EnsureCreated();
+~~~
+</details>
+
 
 ## Add the QuestionsContext as dependency to the request handlers
 
