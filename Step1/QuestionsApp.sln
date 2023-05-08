@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuestionsApp.Web", "QuestionsApp.Web\QuestionsApp.Web.csproj", "{3D924007-2F58-42F6-98EF-CFB81DA3E783}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuestionsApp.Tests", "QuestionsApp.Tests\QuestionsApp.Tests.csproj", "{EF3A88DE-FEF6-4643-B0C1-9BEE6091F102}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{83FDD72C-5E18-466C-A505-B1B2C68980F6}"
+	ProjectSection(SolutionItems) = preProject
+		..\Step1.md = ..\Step1.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D924007-2F58-42F6-98EF-CFB81DA3E783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D924007-2F58-42F6-98EF-CFB81DA3E783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D924007-2F58-42F6-98EF-CFB81DA3E783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D924007-2F58-42F6-98EF-CFB81DA3E783}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF3A88DE-FEF6-4643-B0C1-9BEE6091F102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF3A88DE-FEF6-4643-B0C1-9BEE6091F102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF3A88DE-FEF6-4643-B0C1-9BEE6091F102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF3A88DE-FEF6-4643-B0C1-9BEE6091F102}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C93CA21-9D20-47D2-A563-56AA736EBE01}
+	EndGlobalSection
+EndGlobal
