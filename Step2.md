@@ -29,7 +29,7 @@
 
 ### Add properties for the database model
 
-<details><summary>Add properties to QuestionDB</summary>
+<details><summary>Add properties to QuestionDB class</summary>
  
 ~~~c#
 [Key]
@@ -40,7 +40,7 @@ public ICollection<VoteDB> Votes { get; set; } = null!;
 ~~~
 </details>
 
-<details><summary>Add properties to VoteDB</summary>
+<details><summary>Add properties to VoteDB class</summary>
 
 ~~~c#
 [Key]
@@ -53,7 +53,7 @@ public QuestionDB Question { get; set; } = null!;
 
 ### Implement the QuestionsContext
 
-<details><summary>Add DbContext as base class and add constructor with DbContextOptions parameter for dependency</summary>
+<details><summary>Add DbContext as base class for the QuestionsContext class. Add a constructor with an DbContextOptions options parameter for dependency injection</summary>
 
 ~~~c#
 public class QuestionsContext : DbContext
@@ -64,7 +64,7 @@ public class QuestionsContext : DbContext
 ~~~
 </details>
 
-<details><summary>Add DbSet for Questions and Votes to QuestionsContext</summary>
+<details><summary>Add DbSet for Questions and Votes to the  QuestionsContext class</summary>
 
 ~~~c#
 public DbSet<QuestionDB> Questions { get; set; }
@@ -74,7 +74,7 @@ public DbSet<VoteDB> Votes { get; set; }
 
 ### Configure EntityFramework in program.cs to use SQLite
 
-<details><summary>Add the context to the Sevices</summary>
+<details><summary>Add the context to the Sevices and configure it to use the SQLite provider</summary>
 
 ~~~c#
 // Configuration for Entity Framework
@@ -130,7 +130,7 @@ public VoteForQuestionCommand(QuestionsContext context)
 
 ### Fix the errors in the UnitTests
 
-<details><summary>Add a QuestionContext property to the QuestionsTests class and initialize it in the constructor</summary>
+<details><summary>Add a QuestionContext property to the QuestionsTests class and initialize it in the constructor to use the InMemory provider</summary>
 
 ~~~c#
 private readonly QuestionsContext _context;
@@ -144,7 +144,7 @@ public QuestionsTests()
 ~~~
 </details>
 
-<details><summary>Change the helper methods to use the QuestionsContext</summary>
+<details><summary>Change the helper methods to use the _context as parameter</summary>
 
 ~~~c#
 private GetQuestionsQuery NewGetQuestionsQueryHandler => new(_context);

@@ -33,7 +33,7 @@
 
 ### Add a class GetQuestionsQuery in the Api/Queries/ folder 
 
-* Add using MediatR; 
+* Add ```using MediatR```; 
 * Save the file
 
 ### Add Request and Response Classes
@@ -79,7 +79,7 @@ public class GetQuestionsQuery : IRequestHandler<GetQuestionsRequest, List<GetQu
 
 ### Add a class AskQuestionCommand in the Api/Commands/ folder 
 
-* Add using MediatR; 
+* Add ```using MediatR;``` 
 * Save the file
 
 ### Add Request Class
@@ -113,7 +113,7 @@ public class AskQuestionCommand : IRequestHandler<AskQuestionRequest, IResult>
 
 ### Add a class VoteForQuestionCommand in the Api/Commands/ folder 
 
-* Add using MediatR; 
+* Add ```using MediatR;``` 
 * Save the file
 
 ### Add Request Class
@@ -181,7 +181,7 @@ internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary
 
 ### Register MediatR Handlers
 
-* Add using MediatR;
+* Add ```using MediatR;```
 
 <details><summary>Add the MediatR Registration after builder.Services.AddSwaggerGen()</summary>
 
@@ -194,8 +194,8 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Pr
 
 ### Add Maps for Queries and Commands
 
-* Add using QuestionsApp.Web.Api.Commands;
-* Add using QuestionsApp.Web.Api.Queries;
+* Add ```using QuestionsApp.Web.Api.Commands;```
+* Add ```using QuestionsApp.Web.Api.Queries;```
 
 <details><summary>Add the query and command maps before the app.Run() statement </summary>
  
@@ -224,9 +224,9 @@ app.Run();
 * Add the NuGet Package FluentAssertions
 * Rename the Unittest1.cs file to QuestionsTests.cs
 * Remove the Test1 Method in the QuestionsTests.cs
-* Add using FluentAssertions;
-* Add using QuestionsApp.Web.Api.Commands;
-* Add using QuestionsApp.Web.Api.Queries;
+* Add ```using FluentAssertions;```
+* Add ```using QuestionsApp.Web.Api.Commands;```
+* Add ```using QuestionsApp.Web.Api.Queries;```
 
 ### Implement tests 
 

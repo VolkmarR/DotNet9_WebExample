@@ -30,7 +30,7 @@ builder.Services.AddSignalR();
 ~~~
 </details>
 
-<details><summary>Configure (after Maps)</summary>
+<details><summary>Configure (after the Queries and Command Maps)</summary>
 
 ~~~c#
 // Activate SignalR Hub
