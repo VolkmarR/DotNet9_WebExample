@@ -99,8 +99,8 @@ private VoteForQuestionCommand VoteForQuestionCommandHandler => new(_context, nu
 <details><summary>Add SignalR script import</summary>
 
 ~~~html
-<script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@7.0.3/dist/browser/signalr.min.js" integrity="sha256-zvQeaEXmmM78llGmEtKvwp5dG1kF3iJ3GhdjrO4b+fg=" crossorigin="anonymous"></script>
-
+<!-- SignalR -->
+<script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@8.0.0/dist/browser/signalr.min.js" integrity="sha256-+k7RplYeBZa1wx3zb0fBaSYRX6xF3PAvq1Cgp55YC04=" crossorigin="anonymous"></script>
 <title>Ask your questions</title>
 ~~~
 </details>
