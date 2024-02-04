@@ -37,7 +37,7 @@ namespace QuestionsApp.Tests
             response.Should().HaveCount(1);
             response[0].Votes.Should().Be(0);
 
-            var voteResponse = await NewVoteForQuestionCommandHandler.Handle(new VoteForQuestionRequest { QuestionID = response[0].ID }, default);
+            var voteResponse = await NewVoteForQuestionCommandHandler.Handle(new VoteForQuestionRequest { QuestionId = response[0].Id }, default);
             voteResponse.Should().NotBeNull();
 
             response = await NewGetQuestionsQueryHandler.Handle(new GetQuestionsRequest(), default);

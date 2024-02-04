@@ -1,6 +1,6 @@
 # Step 4 - Client Refresh
 
-## Server Configration
+## Server Configuration
 
 * Add the new folder Hubs to Question.Web
 * Add new class QuestionsHub to folder Hub

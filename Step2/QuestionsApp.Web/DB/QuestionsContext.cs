@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace QuestionsApp.Web.DB
+namespace QuestionsApp.Web.Db
 {
     public class QuestionsContext : DbContext
     {
         public QuestionsContext(DbContextOptions options) : base(options)
         { }
 
-        public DbSet<QuestionDB> Questions { get; set; }
-        public DbSet<VoteDB> Votes { get; set; }
+        public DbSet<QuestionDb> Questions { get; set; }
+        public DbSet<VoteDb> Votes { get; set; }
     }
 }

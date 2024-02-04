@@ -1,9 +1,9 @@
 using MediatR;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using QuestionsApp.Web.Api.Commands;
-using QuestionsApp.Web.Api.Queries;
 using QuestionsApp.Web.DB;
+using QuestionsApp.Web.Handlers.Commands;
+using QuestionsApp.Web.Handlers.Queries;
 using QuestionsApp.Web.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,7 +45,7 @@ app.MapPost("api/commands/questions/", async (IMediator mediator, string content
     => await mediator.Send(new AskQuestionRequest { Content = content }));
 
 app.MapPost("api/commands/questions/{id:int}/vote", async (IMediator mediator, int id) 
-    => await mediator.Send(new VoteForQuestionRequest { QuestionID = id }));
+    => await mediator.Send(new VoteForQuestionRequest { QuestionId = id }));
 
 // Activate SignalR Hub
 app.MapHub<QuestionsHub>("/hub");

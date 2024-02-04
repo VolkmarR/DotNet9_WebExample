@@ -7,7 +7,7 @@ namespace QuestionsApp.Web.DB
         public QuestionsContext(DbContextOptions options) : base(options)
         { }
 
-        public DbSet<QuestionDB> Questions { get; set; }
-        public DbSet<VoteDB> Votes { get; set; }
+        public DbSet<QuestionDb> Questions { get; set; }
+        public DbSet<VoteDb> Votes { get; set; }
     }
 }

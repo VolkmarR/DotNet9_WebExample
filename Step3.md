@@ -1,6 +1,6 @@
 # Step 3 - Add web site
 
-## Server Configration
+## Server Configuration
 
 * Add a new folder called wwwroot
 
@@ -108,8 +108,8 @@ app.UseStaticFiles();
         methods: {
             // adds a new question to the list
             add: function (event) {
-                // if the question is empty, call stopPropagation to stop twitter bootstrap from colapsing the card
-                if (this.newQuestion == '') {
+                // if the question is empty, call stopPropagation to stop twitter bootstrap from collapsing the card
+                if (this.newQuestion === '') {
                     event.stopPropagation();
                     return;
                 }

@@ -24,8 +24,8 @@
 * Add new folder DB to the QuestionsApp.Web project
 * Add new classes for the database model
   * QuestionsContext.cs
-  * QuestionDB.cs
-  * VoteDB.cs
+  * QuestionDb.cs
+  * VoteDb.cs
 
 ### Add properties for the database model
 
@@ -34,9 +34,9 @@
 ~~~c#
 [Key]
 [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-public int ID { get; set; }
+public int Id { get; set; }
 public string Content { get; set; } = "";
-public ICollection<VoteDB> Votes { get; set; } = null!;
+public ICollection<VoteDb> Votes { get; set; } = null!;
 ~~~
 </details>
 
@@ -45,9 +45,9 @@ public ICollection<VoteDB> Votes { get; set; } = null!;
 ~~~c#
 [Key]
 [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-public int ID { get; set; }
-public int QuestionID { get; set; }
-public QuestionDB Question { get; set; } = null!;
+public int Id { get; set; }
+public int QuestionId { get; set; }
+public QuestionDb Question { get; set; } = null!;
 ~~~
 </details>
 
@@ -67,14 +67,14 @@ public class QuestionsContext : DbContext
 <details><summary>Add DbSet for Questions and Votes to the  QuestionsContext class</summary>
 
 ~~~c#
-public DbSet<QuestionDB> Questions { get; set; }
-public DbSet<VoteDB> Votes { get; set; }
+public DbSet<QuestionDb> Questions { get; set; }
+public DbSet<VoteDb> Votes { get; set; }
 ~~~
 </details>
 
 ### Configure EntityFramework in program.cs to use SQLite
 
-<details><summary>Add the context to the Sevices and configure it to use the SQLite provider</summary>
+<details><summary>Add the context to the Services and configure it to use the SQLite provider</summary>
 
 ~~~c#
 // Configuration for Entity Framework
@@ -163,7 +163,7 @@ private VoteForQuestionCommand NewVoteForQuestionCommandHandler => new(_context)
 public async Task<List<GetQuestionsResponse>> Handle(GetQuestionsRequest request, CancellationToken cancellationToken)
 {
     return await(from q in _context.Questions
-                  select new GetQuestionsResponse { ID = q.ID, Content = q.Content, Votes = q.Votes.Count() }).ToListAsync(cancellationToken);
+                  select new GetQuestionsResponse { Id = q.Id, Content = q.Content, Votes = q.Votes.Count() }).ToListAsync(cancellationToken);
 }
 ~~~
 </details>
@@ -193,10 +193,10 @@ public async Task<IResult> Handle(AskQuestionRequest request, CancellationToken 
 ~~~c#
 public async Task<IResult> Handle(VoteForQuestionRequest request, CancellationToken cancellationToken)
 {
-    if (!await _context.Questions.AnyAsync(q => q.ID == request.QuestionID, cancellationToken))
-        return Results.BadRequest("Invalid Question ID");
+    if (!await _context.Questions.AnyAsync(q => q.Id == request.QuestionId, cancellationToken))
+        return Results.BadRequest("Invalid Question Id");
 
-    _context.Votes.Add(new VoteDB { QuestionID = request.QuestionID });
+    _context.Votes.Add(new VoteDB { QuestionId = request.QuestionId });
     await _context.SaveChangesAsync(cancellationToken);
     return Results.Ok();
 }

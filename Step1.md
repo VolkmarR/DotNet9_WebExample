@@ -1,49 +1,32 @@
 # Step 1 - Setup the project
 
-## Create the Solution
-
-* Create new, ASP.NET Core Web Api Project (c#, Linux, macOS, ...)
-  * project name: QuestionsApp.Web
-  * solution name: QuestionsApp
-  * target framework: .NET 7.0
-  * Authentication Type: None
-  * Configure HTTPS: Not checked
-  * Enable Docker: Not checked
-  * Use controllers: Not checked
-  * Enable OpenApi Support: Checked
-  * Do not use top-level statements: Not checked
-* Add new xUnit Test Project (c#, Linux, macOS, ...)
-  * project name: QuestionsApp.Tests
-  * target framework .NET 7.0
-* Save all
-
 ## Add the MediatR Nuget Package
 
-* Add the MediatR Package to the QuestionsApp.Web Dependencies
+* Add the MediatR Nuget Package to the QuestionsApp.Web Dependencies
 * Save all
 
-## Add folders for the Web Api
+## Add folders for the Mediator Handlers
 
 * Add the folders in the QuestionsApp.Web project
-  * Api
-  * Api/Commands
-  * Api/Queries
+  * Handlers
+  * Handlers/Commands
+  * Handlers/Queries
 
 ## Add the GetQuestionsQuery class
 
-### Add a class GetQuestionsQuery in the Api/Queries/ folder 
+### Add a class GetQuestionsQuery in the Handlers/Queries/ folder 
 
 * Add ```using MediatR```; 
 * Save the file
 
 ### Add Request and Response Classes
 
-<details><summary>Add the GetQuestionsResponse class with int ID, string Content, int Votes properies</summary>
+<details><summary>Add the GetQuestionsResponse class with int ID, string Content, int Votes properties</summary>
 
 ~~~c#
 public class GetQuestionsResponse
 {
-	public int ID { get; set; }
+	public int Id { get; set; }
 	public string Content { get; set; } = "";
 	public int Votes { get; set; }
 }
@@ -77,7 +60,7 @@ public class GetQuestionsQuery : IRequestHandler<GetQuestionsRequest, List<GetQu
 
 ## Add the AskQuestionCommand class
 
-### Add a class AskQuestionCommand in the Api/Commands/ folder 
+### Add a class AskQuestionCommand in the Handlers/Commands/ folder 
 
 * Add ```using MediatR;``` 
 * Save the file
@@ -111,7 +94,7 @@ public class AskQuestionCommand : IRequestHandler<AskQuestionRequest, IResult>
 
 ## Add the VoteForQuestionCommand class
 
-### Add a class VoteForQuestionCommand in the Api/Commands/ folder 
+### Add a class VoteForQuestionCommand in the Handlers/Commands/ folder 
 
 * Add ```using MediatR;``` 
 * Save the file
@@ -123,7 +106,7 @@ public class AskQuestionCommand : IRequestHandler<AskQuestionRequest, IResult>
 ~~~c#
 public class VoteForQuestionRequest : IRequest<IResult>
 {
-	public int QuestionID { get; set; }
+	public int QuestionId { get; set; }
 }
 ~~~
 </details>
@@ -146,39 +129,6 @@ public class VoteForQuestionCommand : IRequestHandler<VoteForQuestionRequest, IR
 
 ## Setup Minimal API in Program.cs File
 
-### Clean Up example code
-
-<details><summary>Remove the Example code (Summary, app.MapGet and WeatherForecast record</summary>
- 
-~~~c#
-// remove summaries
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-// remove MapGet
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-});
-
-// remove WeatherForecast
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
-~~~
-</details>
-
 ### Register MediatR Handlers
 
 * Add ```using MediatR;```
@@ -192,10 +142,10 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Pr
 ~~~
 </details>
 
-### Add Maps for Queries and Commands
+### Add Api Maps for Queries and Commands
 
-* Add ```using QuestionsApp.Web.Api.Commands;```
-* Add ```using QuestionsApp.Web.Api.Queries;```
+* Add ```using QuestionsApp.Web.Handlers.Commands;```
+* Add ```using QuestionsApp.Web.Handlers.Queries;```
 
 <details><summary>Add the query and command maps before the app.Run() statement </summary>
  
@@ -209,7 +159,7 @@ app.MapPost("api/commands/questions/", async (IMediator mediator, string content
     => await mediator.Send(new AskQuestionRequest { Content = content }));
 
 app.MapPost("api/commands/questions/{id:int}/vote", async (IMediator mediator, int id) 
-    => await mediator.Send(new VoteForQuestionRequest { QuestionID = id }));
+    => await mediator.Send(new VoteForQuestionRequest { QuestionId = id }));
 
 app.Run();
  ~~~
@@ -220,13 +170,12 @@ app.Run();
 
 ## Add Unittests for RequestHandlers
 
-* Add a project refererence to the QuestionsApp.Web project in the QuestionsApp.Tests project
 * Add the NuGet Package FluentAssertions
-* Rename the Unittest1.cs file to QuestionsTests.cs
-* Remove the Test1 Method in the QuestionsTests.cs
-* Add ```using FluentAssertions;```
-* Add ```using QuestionsApp.Web.Api.Commands;```
-* Add ```using QuestionsApp.Web.Api.Queries;```
+* Add a class QuestionsTests
+* Add the using statements
+  * ```using FluentAssertions;```
+  * ```using QuestionsApp.Web.Handlers.Commands;```
+  * ```using QuestionsApp.Web.Handlers.Queries;```
 
 ### Implement tests 
 
@@ -280,7 +229,7 @@ public async void OneQuestionAndVote()
 	response.Should().HaveCount(1);
 	response[0].Votes.Should().Be(0);
 
-	var voteResponse = await NewVoteForQuestionCommandHandler.Handle(new VoteForQuestionRequest { QuestionID = response[0].ID }, default);
+	var voteResponse = await NewVoteForQuestionCommandHandler.Handle(new VoteForQuestionRequest { QuestionId = response[0].Id }, default);
 	voteResponse.Should().NotBeNull();
 
 	response = await NewGetQuestionsQueryHandler.Handle(new GetQuestionsRequest(), default);

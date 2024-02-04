@@ -30,6 +30,6 @@ app.MapPost("api/commands/questions/", async (IMediator mediator, string content
     => await mediator.Send(new AskQuestionRequest { Content = content }));
 
 app.MapPost("api/commands/questions/{id:int}/vote", async (IMediator mediator, int id) 
-    => await mediator.Send(new VoteForQuestionRequest { QuestionID = id }));
+    => await mediator.Send(new VoteForQuestionRequest { QuestionId = id }));
 
 app.Run();
