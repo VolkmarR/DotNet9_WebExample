@@ -6,7 +6,7 @@
 * Add new class QuestionsHub to folder Hub
 * Set the base class of the QuestionsHub class to Hub
 
-<details><summary>Add a static class with an extension method for the refresh command</summary>
+<details><summary>Add a static class with an extension method for the refresh command.</summary>
 
 ~~~c#
 public static class QuestionsHubExtensions
@@ -20,9 +20,9 @@ public static class QuestionsHubExtensions
 ~~~
 </details>
 
-### Configure and activate SignalR in program.cs
+### Register and activate SignalR in program.cs
 
-<details><summary>ConfigureServices</summary>
+<details><summary>Register SignalR.</summary>
 
 ~~~c#
 // Configuration for SignalR
@@ -30,7 +30,7 @@ builder.Services.AddSignalR();
 ~~~
 </details>
 
-<details><summary>Configure (after the Queries and Command Maps)</summary>
+<details><summary>Activate (after the Queries and Command Maps).</summary>
 
 ~~~c#
 // Activate SignalR Hub
@@ -42,7 +42,7 @@ app.MapHub<QuestionsHub>("/hub");
 
 ### Commands\AskQuestionCommand
 
-<details><summary>Add a IHubContext<QuestionsHub> as parameter to the constructor for dependency injection</summary>
+<details><summary>Add a IHubContext<QuestionsHub> as parameter to the constructor for dependency injection.</summary>
 
 ~~~c#
 private readonly IHubContext<QuestionsHub>? _hub;
@@ -54,7 +54,7 @@ public AskQuestionCommand(QuestionsContext context, IHubContext<QuestionsHub>? h
 ~~~
 </details>
 
-<details><summary>Call the refresh SendRefreshAsync in the handle method after the save</summary>
+<details><summary>Call the refresh SendRefreshAsync in the handle method after the SaveChangesAsync call.</summary>
 
 ~~~c#
 await _hub.SendRefreshAsync();
@@ -63,7 +63,7 @@ await _hub.SendRefreshAsync();
 
 ### Commands\VoteForQuestionCommand
 
-<details><summary>Add a IHubContext<QuestionsHub> as parameter to the constructor for dependency injection</summary>
+<details><summary>Add a IHubContext<QuestionsHub> as parameter to the constructor for dependency injection.</summary>
 
 ~~~c#
 private readonly IHubContext<QuestionsHub>? _hub;
@@ -75,7 +75,7 @@ public VoteForQuestionCommand(QuestionsContext context, IHubContext<QuestionsHub
 ~~~
 </details>
 
-<details><summary>Call the refresh SendRefreshAsync in the handle method after the save</summary>
+<details><summary>Call the refresh SendRefreshAsync in the handle method after the SaveChangesAsync call.</summary>
 
 ~~~c#
 await _hub.SendRefreshAsync();
@@ -85,7 +85,7 @@ await _hub.SendRefreshAsync();
 
 ### Fix the unit tests
 
-<details><summary>Modify the initialisation of the RequestHandlers</summary>
+<details><summary>Modify the initialisation of the RequestHandlers.</summary>
 
 ~~~c#
 private GetQuestionsQuery GetQuestionsQueryHandler => new(_context);
@@ -105,9 +105,9 @@ private VoteForQuestionCommand VoteForQuestionCommandHandler => new(_context, nu
 ~~~
 </details>
 
-Remove the call of getQuestions from the methods ask and vote
+Remove the call of getQuestions from the methods add and vote.
 
-<details><summary>Add connection to hub and register to the refresh message to call getQuestions</summary>
+<details><summary>Add connection to hub and register to the refresh message to call getQuestions.</summary>
 
 ~~~js
 // app.mount("#questionView");
@@ -120,3 +120,12 @@ connection.start().catch(err => console.error(err.toString()));
 connection.on("Refresh", () => { console.log("Refresh"); vm.getQuestions(); });
 ~~~
 </details>
+
+## Test the changes
+
+* Run the unit tests to see if they still work
+* Run the web application and open the url http://localhost:5000/ in two browser tabs. 
+  * Add a question on one tab
+  * Check if the question is shown on the other tab
+  * Vote on a question on one tab
+  * Check if the vote is shown on the other tab

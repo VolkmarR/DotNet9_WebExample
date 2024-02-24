@@ -16,12 +16,13 @@
 
 ### Add a class GetQuestionsQuery in the Handlers/Queries/ folder 
 
-* Add ```using MediatR```; 
+* Add ```using MediatR;```
+* Remove the empty class GetQuestionsQuery 
 * Save the file
 
 ### Add Request and Response Classes
 
-<details><summary>Add the GetQuestionsResponse class with int ID, string Content, int Votes properties</summary>
+<details><summary>Add the GetQuestionsResponse class with int ID, string Content, int Votes properties.</summary>
 
 ~~~c#
 public class GetQuestionsResponse
@@ -34,7 +35,7 @@ public class GetQuestionsResponse
 </details>
 
 
-<details><summary>Add the GetQuestionsRequest class with IRequest&lt;List&lt;GetQuestionsResponse&gt&gt; interface</summary>
+<details><summary>Add the GetQuestionsRequest class with IRequest&lt;List&lt;GetQuestionsResponse&gt&gt; interface.</summary>
 
 ~~~c#
 public class GetQuestionsRequest : IRequest<List<GetQuestionsResponse>>
@@ -44,7 +45,7 @@ public class GetQuestionsRequest : IRequest<List<GetQuestionsResponse>>
 
 ### Setup the GetQuestionsQuery Request-Handler
 
-<details><summary>Add the IRequestHandler&lt;GetQuestionsRequest, List&lt;GetQuestionsResponse&gt;&gt interface to the GetQuestionsQuery class and add the empty implementation</summary>
+<details><summary>Add the IRequestHandler&lt;GetQuestionsRequest, List&lt;GetQuestionsResponse&gt;&gt interface to the GetQuestionsQuery class and add the empty implementation.</summary>
 
 ~~~c#
 public class GetQuestionsQuery : IRequestHandler<GetQuestionsRequest, List<GetQuestionsResponse>>
@@ -63,11 +64,12 @@ public class GetQuestionsQuery : IRequestHandler<GetQuestionsRequest, List<GetQu
 ### Add a class AskQuestionCommand in the Handlers/Commands/ folder 
 
 * Add ```using MediatR;``` 
+* Remove the empty class AskQuestionCommand 
 * Save the file
 
 ### Add Request Class
 
-<details><summary>Add the AskQuestionRequest class with IRequest&lt;IResult&gt; interface</summary>
+<details><summary>Add the AskQuestionRequest class with IRequest&lt;IResult&gt; interface.</summary>
 
 ~~~c#
 public class AskQuestionRequest :IRequest<IResult>
@@ -79,7 +81,7 @@ public class AskQuestionRequest :IRequest<IResult>
 
 ### Setup the AskQuestionCommand Request-Handler
 
-<details><summary>Add the IRequestHandler&lt;AskQuestionRequest, IResult&gt interface to the AskQuestionCommand class and add the empty implementation</summary>
+<details><summary>Add the IRequestHandler&lt;AskQuestionRequest, IResult&gt interface to the AskQuestionCommand class and add the empty implementation.</summary>
 
 ~~~c#
 public class AskQuestionCommand : IRequestHandler<AskQuestionRequest, IResult>
@@ -97,11 +99,12 @@ public class AskQuestionCommand : IRequestHandler<AskQuestionRequest, IResult>
 ### Add a class VoteForQuestionCommand in the Handlers/Commands/ folder 
 
 * Add ```using MediatR;``` 
+* Remove the empty class VoteForQuestionCommand 
 * Save the file
 
 ### Add Request Class
 
-<details><summary>Add the VoteForQuestionRequest class with IRequest&lt;IResult&gt; interface</summary>
+<details><summary>Add the VoteForQuestionRequest class with IRequest&lt;IResult&gt; interface.</summary>
 
 ~~~c#
 public class VoteForQuestionRequest : IRequest<IResult>
@@ -113,7 +116,7 @@ public class VoteForQuestionRequest : IRequest<IResult>
 
 ### Setup the VoteForQuestionCommand Request-Handler
 
-<details><summary>Add the IRequestHandler&lt;VoteForQuestionRequest, IResult&gt interface to the VoteForQuestionCommand class and add the empty implementation</summary>
+<details><summary>Add the IRequestHandler&lt;VoteForQuestionRequest, IResult&gt interface to the VoteForQuestionCommand class and add the empty implementation.</summary>
 
 ~~~c#
 public class VoteForQuestionCommand : IRequestHandler<VoteForQuestionRequest, IResult>
@@ -133,7 +136,7 @@ public class VoteForQuestionCommand : IRequestHandler<VoteForQuestionRequest, IR
 
 * Add ```using MediatR;```
 
-<details><summary>Add the MediatR Registration after builder.Services.AddSwaggerGen()</summary>
+<details><summary>Add the MediatR Registration after builder.Services.AddSwaggerGen().</summary>
 
 ~~~c#
 builder.Services.AddSwaggerGen();
@@ -147,7 +150,7 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Pr
 * Add ```using QuestionsApp.Web.Handlers.Commands;```
 * Add ```using QuestionsApp.Web.Handlers.Queries;```
 
-<details><summary>Add the query and command maps before the app.Run() statement </summary>
+<details><summary>Add the query and command maps before the app.Run() statement.</summary>
  
 ~~~c#
 // Queries
@@ -165,6 +168,15 @@ app.Run();
  ~~~
 </details>
 
+## Start swagger to check if the apis are shown
+
+Run the QuestionsApp.Web application. A browser should open the page http://localhost:5000/swagger/index.html.
+
+The page should show the three api routes: 
+* GET /api/queries/questions
+* PUT /api/commands/questions
+* POST /api/commands/questions/{id}/vote
+
 -----------------------
 
 
@@ -179,7 +191,7 @@ app.Run();
 
 ### Implement tests 
 
-<details><summary>Helper methods to create new instances of the handlers</summary>
+<details><summary>Helper methods to create new instances of the handlers.</summary>
 
 ~~~c#
 private GetQuestionsQuery NewGetQuestionsQueryHandler => new();
@@ -189,7 +201,7 @@ private VoteForQuestionCommand NewVoteForQuestionCommandHandler => new();
 </details>
 
 
-<details><summary>Empty Test</summary>
+<details><summary>Empty Test.</summary>
 
 ~~~c#
 [Fact]
@@ -201,7 +213,7 @@ public async void Empty()
 ~~~
 </details>
 
-<details><summary>OneQuestion</summary>
+<details><summary>OneQuestion Test.</summary>
 
 ~~~c#
 [Fact]
@@ -216,7 +228,7 @@ public async void OneQuestion()
 ~~~
 </details>
 
-<details><summary>OneQuestionAndVote Test</summary>
+<details><summary>OneQuestionAndVote Test.</summary>
 
 ~~~c#
 [Fact]
@@ -239,3 +251,6 @@ public async void OneQuestionAndVote()
 ~~~
 </details>
 
+### Run tests 
+
+Run the unit tests. Since the handlers are not implemented yet, all three tests must fail. (red)

@@ -25,7 +25,7 @@
 
 ### Remove Minimal API example in Program.*cs
 
-<details><summary>Remove the Example code (Summary, app.MapGet and WeatherForecast record</summary>
+<details><summary>Remove the Example code (Summary, app.MapGet and WeatherForecast record).</summary>
  
 ~~~c#
 // remove summaries

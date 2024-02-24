@@ -6,7 +6,7 @@
 
 ### Activate Static Files in the startup
 
-<details><summary>Configure (before app.UseRouting...)</summary>
+<details><summary>Activate the static file serving in the program.cs (before the app.Map... calls).</summary>
 
 ~~~c#
 // activate static files serving (before the Map...)
@@ -19,7 +19,7 @@ app.UseStaticFiles();
 
 * Add an index.html file to wwwroot
 
-<details><summary>Add Twitter Bootstrap, Vue.JS and axios scripts imports</summary>
+<details><summary>Add Twitter Bootstrap, Vue.JS and axios scripts imports.</summary>
 
 ~~~Html
 <head>
@@ -62,7 +62,7 @@ app.UseStaticFiles();
                         <input type="text" class="form-control" v-model="newQuestion" placeholder="Question">
                     </div>
                     <div class="col-1">
-                        <button class="btn btn-primary btn-block" v-on:click="add"
+                        <button class="btn btn-primary btn-block" v-on:click="ask"
                                 data-bs-toggle="collapse" data-bs-target="#questionBox">Send</button>
                     </div>
                 </div>
@@ -95,7 +95,7 @@ app.UseStaticFiles();
 ~~~
 </details>
   
-<details><summary>Add the Vue app to make the site dynamic</summary>
+<details><summary>Add the Vue app to make the site dynamic (after the layout).</summary>
 
 ~~~Html
 <script>
@@ -145,3 +145,7 @@ app.UseStaticFiles();
 </script>
 ~~~
 </details>
+
+## Test the changes in the browser
+
+Run the web application and open the url http://localhost:5000/. Try if you can add questions and vote on them.
