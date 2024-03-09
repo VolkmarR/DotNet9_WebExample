@@ -109,7 +109,7 @@ app.UseStaticFiles();
         }),
         methods: {
             // adds a new question to the list
-            add: function (event) {
+            ask: function (event) {
                 // if the question is empty, call stopPropagation to stop twitter bootstrap from collapsing the card
                 if (this.newQuestion === '') {
                     event.stopPropagation();

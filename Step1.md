@@ -174,7 +174,7 @@ Run the QuestionsApp.Web application. A browser should open the page http://loca
 
 The page should show the three api routes: 
 * GET /api/queries/questions
-* PUT /api/commands/questions
+* POST /api/commands/questions
 * POST /api/commands/questions/{id}/vote
 
 -----------------------
