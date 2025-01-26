@@ -5,7 +5,7 @@
 * Create new, ASP.NET Core Web Api Project (c#, Linux, macOS, ...)
   * project name: QuestionsApp.Web
   * solution name: QuestionsApp
-  * target framework: .NET 8.0
+  * target framework: .NET 9.0
   * Authentication Type: None
   * Configure HTTPS: Not checked
   * Enable Docker: Not checked
@@ -14,7 +14,7 @@
   * Do not use top-level statements: Not checked
 * Add new xUnit Test Project (c#, Linux, macOS, ...)
   * project name: QuestionsApp.Tests
-    * target framework .NET 8.0
+    * target framework .NET 9.0
 * Save all
 
 ## Setup the dependency from the QuestionsApp.Tests project to the QuestionsApp.Web project
