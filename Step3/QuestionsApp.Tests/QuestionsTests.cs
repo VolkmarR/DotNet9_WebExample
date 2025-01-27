@@ -23,14 +23,14 @@ namespace QuestionsApp.Tests
 
 
         [Fact]
-        public async void Empty()
+        public async Task Empty()
         {
             var response = await NewGetQuestionsQueryHandler.Handle(new GetQuestionsRequest(), default);
             response.Should().BeEmpty();
         }
 
         [Fact]
-        public async void OneQuestion()
+        public async Task OneQuestion()
         {
             var askResponse = await NewAskQuestionCommandHandler.Handle(new AskQuestionRequest { Content = "Dummy Question" }, default);
             askResponse.Should().NotBeNull();
@@ -40,7 +40,7 @@ namespace QuestionsApp.Tests
         }
 
         [Fact]
-        public async void OneQuestionAndVote()
+        public async Task OneQuestionAndVote()
         {
             var askResponse = await NewAskQuestionCommandHandler.Handle(new AskQuestionRequest { Content = "Dummy Question" }, default);
             askResponse.Should().NotBeNull();

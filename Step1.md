@@ -205,7 +205,7 @@ private VoteForQuestionCommand NewVoteForQuestionCommandHandler => new();
 
 ~~~c#
 [Fact]
-public async void Empty()
+public async Task Empty()
 {
 	var response = await NewGetQuestionsQueryHandler.Handle(new GetQuestionsRequest(), default);
 	response.Should().BeEmpty();
@@ -217,7 +217,7 @@ public async void Empty()
 
 ~~~c#
 [Fact]
-public async void OneQuestion()
+public async Task OneQuestion()
 {
 	var askResponse = await NewAskQuestionCommandHandler.Handle(new AskQuestionRequest { Content = "Dummy Question" }, default);
 	askResponse.Should().NotBeNull();
@@ -232,7 +232,7 @@ public async void OneQuestion()
 
 ~~~c#
 [Fact]
-public async void OneQuestionAndVote()
+public async Task OneQuestionAndVote()
 {
 	var askResponse = await NewAskQuestionCommandHandler.Handle(new AskQuestionRequest { Content = "Dummy Question" }, default);
 	askResponse.Should().NotBeNull();
