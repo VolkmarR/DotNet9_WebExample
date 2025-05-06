@@ -27,11 +27,15 @@ It shows a list of questions. The users can add new questions to the list and vo
  
 ## Steps
 
-To recreate this project, these four steps should be followed. For a detailed description of each step, click on the corresponding header. This repository also contains a folder for each step, that shows the state of the solution after completing the corresponding step.
+To recreate this project, these five steps should be followed. For a detailed description of each step, click on the corresponding header. This repository also contains a folder for each step, that shows the state of the solution after completing the corresponding step.
 
-### [Step 1 - Set up the project](Step1.md)
+### [Step 0 - Set up the projects](Step0.md)
 
-Create new projects for the MinimalApi and the Unit Tests, and add the Swagger UI.
+Create new projects for the MinimalApi and the Unit Tests.
+
+### [Step 1 - Setup MediatR, MinimalApi and Unit Tests](Step1.md)
+
+Add the MediatR handlers and the MinimalApi.
 
 ### [Step 2 - Web Api implementation](Step2.md)
 

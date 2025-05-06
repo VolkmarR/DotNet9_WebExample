@@ -1,4 +1,4 @@
-# Step 1 - Setup the project
+# Step 1 - Setup MediatR, MinimalApi and Unit Tests
 
 ## Add the MediatR Nuget Package
 

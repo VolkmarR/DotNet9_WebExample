@@ -21,6 +21,21 @@
 
 * Add a reference to the QuestionsApp.Web project in the dependencies of the QuestionsApp.Tests project
 
+## Setup Swagger and SwaggerUI in the QuestionsApp.Web project
+
+* Add the NuGet Package `Swashbuckle.AspNetCore`
+* Open the program.cs file
+* Replace the code line `builder.Services.AddOpenApi();` with
+~~~c#
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+~~~
+* Replace the code line `app.MapOpenApi();` with
+~~~c#
+app.UseSwagger();
+app.UseSwaggerUI();
+~~~
+
 ## Clean Up example code
 
 ### Remove Minimal API example in Program.*cs
