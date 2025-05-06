@@ -1,6 +1,6 @@
-# DotNetCore70_WebExample V2
+# DotNet9_WebExample
 
-This is an example project that shows, step by step, how to build a simple web application with asp.net core 7.0. 
+This is an example project that shows, step by step, how to build a simple web application with asp.net core 9.0. 
 
 ## Result
 
