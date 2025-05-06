@@ -10,20 +10,20 @@ It shows a list of questions. The users can add new questions to the list and vo
 
 ## Used server side frameworks
 
-* .Net 7
-* Asp.net core 7
-* MediatR 12.0.1
-* XUnit 2.4.2
-* FluentAssertions 6.11.0
-* Swashbuckle 6.5.0
-* Entity framework core 7
-* Asp.net SignalR core 7
+* .Net 9
+* Asp.net core 9
+* MediatR 12.4.1
+* XUnit 2.9.3
+* FluentAssertions 8.0.1
+* Swashbuckle 7.2.0
+* Entity framework core 9
+* Asp.net SignalR core 9
 
 ## Used client side frameworks
 * Twitter Bootstrap 5.2.3
-* Vue.js 3.2.47
-* Axios 1.3.4
-* SignalR 7.0.3
+* Vue.js 3.4.15
+* Axios 1.6.7
+* SignalR 8.0.0
  
 ## Steps
 
